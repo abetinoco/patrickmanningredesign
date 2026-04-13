@@ -703,12 +703,18 @@ h1,h2,h3,h4 { font-family: var(--font-display); line-height: 1.14; }
   background: #111c14;
   flex-direction: column;
   z-index: 10000;
-  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
+/* Full viewport column: header + scrollable middle + footer — avoids flex:1 body
+   shrinking below its content (overflow:visible) so the footer paints over quick links */
 .mob-nav-overlay.open {
   display: flex;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow: hidden;
 }
 
 /* Fixed floating CTA uses its own stacking context; keep it off the menu entirely */
@@ -769,8 +775,10 @@ body:has(.mob-nav-overlay.open) .floating-cta {
 .mob-nav-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  flex: 1;
+  flex: 1 1 auto;
   min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .mob-nav-links-col {
@@ -857,6 +865,7 @@ body:has(.mob-nav-overlay.open) .floating-cta {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
   text-decoration: none;
   padding: 7px 10px;
   border-radius: 7px;
