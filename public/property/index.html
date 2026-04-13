@@ -22,6 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="footer.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -307,27 +308,33 @@
       padding: 20px;
       display: flex; gap: 14px; align-items: center;
     }
-    .agent-avatar {
-      width: 52px; height: 52px;
-      background: linear-gradient(135deg, var(--brown) 0%, var(--orange) 100%);
+    .agent-avatar-wrap {
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-weight: 700; font-size: 1.1rem;
+      overflow: hidden;
       flex-shrink: 0;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .agent-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 32%;
+      display: block;
     }
     .agent-name { font-weight: 700; font-size: 0.95rem; color: var(--ink); }
     .agent-title { font-size: 0.78rem; color: var(--ink-muted); margin-top: 2px; }
-    .agent-phone { font-size: 0.82rem; color: var(--orange); font-weight: 600; margin-top: 4px; }
-
-    /* FOOTER */
-    .prop-footer {
-      background: var(--ink);
-      color: rgba(255,255,255,0.6);
-      text-align: center;
-      padding: 24px;
-      font-size: 0.8rem;
+    .agent-phone {
+      font-size: 0.82rem;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 4px;
+      text-decoration: none;
+      display: inline-block;
     }
-    .prop-footer a { color: var(--orange); }
+    .agent-phone:hover { text-decoration: underline; }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
@@ -577,14 +584,16 @@
         <div class="price-value">$1,195,000</div>
         <div class="price-sub">1578 S Berlin Rd · Lewisburg, TN 37091</div>
         <a href="https://calendly.com/pmanningtnrealtor/realestateconsultation" target="_blank" class="btn-full btn-primary">Schedule a Tour</a>
-        <a href="tel:+16155550000" class="btn-full btn-outline">Call Patrick</a>
+        <a href="tel:+16153028000" class="btn-full btn-outline">Call Patrick</a>
       </div>
       <div class="agent-card">
-        <div class="agent-avatar">PM</div>
+        <div class="agent-avatar-wrap">
+          <img class="agent-avatar-img" src="/patrick-manning.png" alt="Patrick Manning, Realtor" width="52" height="52" loading="lazy" />
+        </div>
         <div>
           <div class="agent-name">Patrick Manning</div>
           <div class="agent-title">REALTOR® · TN &amp; KY</div>
-          <div class="agent-phone">(615) 555-0000</div>
+          <a href="tel:+16153028000" class="agent-phone">+1 615-302-8000</a>
         </div>
       </div>
     </aside>
@@ -600,10 +609,107 @@
     <div class="lightbox-counter" id="lightbox-counter"></div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="prop-footer">
-    <p>© 2025 Patrick Manning, REALTOR® · Information deemed reliable but not guaranteed · Equal Housing Opportunity</p>
-    <p style="margin-top:6px;"><a href="../index.html">PatrickManningRealtor.com</a></p>
+  <!-- FOOTER (matches main marketing site) -->
+  <footer class="footer" id="footer">
+    <div class="footer-main">
+
+      <div class="footer-brand">
+        <div class="footer-logo-name">Patrick Manning</div>
+        <div class="footer-logo-sub">Realtor®</div>
+        <p class="footer-brand-desc">Real Broker, LLC. Licensed in Tennessee and Kentucky. TN License IDs: 341965 &amp; 291536</p>
+        <a href="tel:+16153028000" class="footer-phone">+1 615-302-8000</a>
+        <div class="footer-socials">
+          <a href="https://facebook.com/pmanningtnrealtor" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(245,240,232,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://instagram.com/pmanningtnrealtor" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(245,240,232,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/pmanningtnrealtor" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(245,240,232,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://tiktok.com/@pmanningtnrealtor" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="TikTok">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(245,240,232,0.5)" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/>
+            </svg>
+          </a>
+          <a href="https://youtube.com/@patrickmanningrealtor" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="YouTube">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(245,240,232,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-label">Navigate</div>
+        <div class="footer-links">
+          <a href="/" class="footer-link">Home</a>
+          <a href="/#services" class="footer-link">Buy &amp; Sell</a>
+          <a href="/#home-value" class="footer-link">Home Value</a>
+          <a href="/#about" class="footer-link">About</a>
+          <a href="/#coverage" class="footer-link">Areas served</a>
+          <a href="/#social" class="footer-link">Social</a>
+          <a href="/#reviews" class="footer-link">Reviews</a>
+          <a href="/#contact" class="footer-link">Contact</a>
+          <a href="https://www.homes.com/real-estate-agents/patrick-manning/jr2sjd4/" target="_blank" rel="noopener noreferrer" class="footer-homes-link" aria-label="Homes.com — browse listings with Patrick">
+            <span class="footer-homes-logo-wrap">
+              <img src="/homes-com-logo.png" alt="" class="footer-homes-logo" width="88" height="22" loading="lazy" aria-hidden="true" />
+            </span>
+            <span class="footer-homes-text">Browse listings</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-label">Reach out</div>
+        <div class="footer-links">
+          <a href="/#contact" class="footer-link">Book a call</a>
+          <a href="mailto:patrick@patrickmanningrealtor.com" class="footer-link">Email Patrick</a>
+          <a href="tel:+16153028000" class="footer-link">+1 615-302-8000</a>
+          <a href="/#buyer-questionnaire" class="footer-link">Buyer questionnaire</a>
+          <a href="/#seller-questionnaire" class="footer-link">Seller questionnaire</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-label">Brokerage offices</div>
+        <div class="footer-offices">
+          <div class="footer-office">
+            <div class="footer-office-addr">1 Music Cir North, Suite 318<br>Nashville, TN 37203</div>
+            <div class="footer-office-contact">Carrie Anne Walters · <a href="tel:+18445917325">+1 844-591-7325</a></div>
+          </div>
+          <div class="footer-office-divider"></div>
+          <div class="footer-office">
+            <div class="footer-office-addr">222 East Witherspoon St, 1st Floor<br>Louisville, KY 40202</div>
+            <div class="footer-office-contact">Andrew Pruitt · <a href="tel:+15025009000">+1 502-500-9000</a></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-legal">
+      <p class="footer-legal-text">Patrick Manning and Real Broker, LLC proudly support the principles of the Fair Housing Act and the Equal Opportunity Act. Housing is available to all persons regardless of race, color, religion, sex, handicap, familial status, or national origin.</p>
+      <p class="footer-legal-text">View the <a href="https://www.therealbrokerage.com/terms" class="footer-legal-link footer-legal-link--underline" target="_blank" rel="noopener noreferrer">Terms of Service</a> and <a href="https://www.therealbrokerage.com/privacy" class="footer-legal-link footer-legal-link--underline" target="_blank" rel="noopener noreferrer">Privacy Policy</a> for details on how Real Broker, LLC safeguards client information, digital communications, and website usage data.</p>
+      <p class="footer-legal-text" style="margin-top:8px;">Listing information deemed reliable but not guaranteed. Equal Housing Opportunity.</p>
+      <div class="footer-bottom">
+        <div class="footer-legal-links">
+          <a href="https://supporthub.realtracs.com/mls-rules-user-agreement" class="footer-legal-link" target="_blank" rel="noopener noreferrer">WKRMLS Conditions of Use</a>
+          <span class="footer-divider-line" aria-hidden="true"></span>
+          <a href="https://www.realtracs.com/terms-of-use" class="footer-legal-link" target="_blank" rel="noopener noreferrer">RealTracs Terms of Use</a>
+          <span class="footer-divider-line" aria-hidden="true"></span>
+          <a href="https://www.therealbrokerage.com/terms" class="footer-legal-link" target="_blank" rel="noopener noreferrer">Real Broker Terms</a>
+          <span class="footer-divider-line" aria-hidden="true"></span>
+          <a href="https://www.therealbrokerage.com/privacy" class="footer-legal-link" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+          <span class="footer-divider-line" aria-hidden="true"></span>
+          <a href="https://www.therealbrokerage.com/dmca" class="footer-legal-link" target="_blank" rel="noopener noreferrer">DMCA Notice</a>
+        </div>
+        <div class="footer-bottom-right">
+          <div class="footer-copy">© 2026 Patrick Manning. Real Broker, LLC.</div>
+          <div class="footer-madeby">Made with <span class="footer-madeby-heart">♥</span> by Halo</div>
+        </div>
+      </div>
+    </div>
+
   </footer>
 
   <script>
