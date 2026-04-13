@@ -1472,6 +1472,9 @@
       <h2 id="contact-schedule-modal-title" class="site-modal__title">Book a call with Patrick</h2>
       <p class="site-modal__sub">Same calendar as the full site — pick a time that works for you.</p>
       <div id="modal-calendly-root" class="site-modal__calendly"></div>
+      <p id="modal-calendly-fallback" class="site-modal__calendly-fallback" hidden>
+        Calendar didn’t load (network or blocker). <a href="https://calendly.com/pmanningtnrealtor/realestateconsultation" target="_blank" rel="noopener noreferrer">Open Calendly in a new tab</a>.
+      </p>
     </div>
   </div>
 
@@ -1596,11 +1599,12 @@
   </script>
   <!-- Optional: PostHog web snippet from https://posthog.com/docs (insert above tracking.js) -->
   <script async src="https://www.tiktok.com/embed.js"></script>
-  <script async src="https://assets.calendly.com/assets/external/widget.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
-  <script src="/coverage-maps.js" defer></script>
-  <script src="/tracking.js" defer></script>
-  <script src="/main.js" defer></script>
+  <!-- defer + order before main.js so window.Calendly exists before DOMContentLoaded handlers run -->
+  <script defer src="https://assets.calendly.com/assets/external/widget.js"></script>
+  <script defer src="/coverage-maps.js"></script>
+  <script defer src="/tracking.js"></script>
+  <script defer src="/main.js"></script>
 </body>
 </html>

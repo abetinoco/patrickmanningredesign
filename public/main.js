@@ -31,6 +31,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const CALENDLY_INLINE_URL =
     'https://calendly.com/pmanningtnrealtor/realestateconsultation?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=d4703a';
+  const CALENDLY_WIDGET_SRC = 'https://assets.calendly.com/assets/external/widget.js';
+
+  /** Resolve when window.Calendly is available (defer tag in HTML, or dynamic inject). */
+  const ensureCalendlyScript = () =>
+    new Promise((resolve, reject) => {
+      const ready = () =>
+        window.Calendly && typeof window.Calendly.initInlineWidget === 'function';
+      if (ready()) {
+        resolve();
+        return;
+      }
+      let settled = false;
+      let pollId = 0;
+      const clearPoll = () => {
+        if (pollId) window.clearInterval(pollId);
+        pollId = 0;
+      };
+      const finishOk = () => {
+        if (settled) return;
+        if (!ready()) return;
+        settled = true;
+        clearPoll();
+        resolve();
+      };
+      const finishErr = (msg) => {
+        if (settled) return;
+        settled = true;
+        clearPoll();
+        reject(new Error(msg));
+      };
+
+      const existing = Array.from(document.scripts).find(
+        (s) => s.src && s.src.indexOf('assets.calendly.com/assets/external/widget.js') !== -1,
+      );
+      if (existing) {
+        existing.addEventListener('load', () => (ready() ? finishOk() : finishErr('Calendly script failed')), {
+          once: true,
+        });
+        existing.addEventListener('error', () => finishErr('Calendly script failed'), { once: true });
+      } else {
+        const s = document.createElement('script');
+        s.src = CALENDLY_WIDGET_SRC;
+        s.async = true;
+        s.dataset.calendlyWidget = '1';
+        s.onload = () => (ready() ? finishOk() : finishErr('Calendly script failed'));
+        s.onerror = () => finishErr('Calendly script failed');
+        document.head.appendChild(s);
+      }
+
+      const start = performance.now();
+      pollId = window.setInterval(() => {
+        if (ready()) finishOk();
+        else if (performance.now() - start > 20000) finishErr('Calendly load timeout');
+      }, 50);
+    });
 
   /* ---- Responsive <details>: open on wide viewports (summary hidden in CSS) ---- */
   const syncDetailsRwdOpen = () => {
@@ -98,37 +153,60 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---- Scheduling modal (mobile: saves vertical space vs inline Calendly) ---- */
   const scheduleModal = document.getElementById('contact-schedule-modal');
   const modalCalendlyRoot = document.getElementById('modal-calendly-root');
+  const modalCalendlyFallback = document.getElementById('modal-calendly-fallback');
   let calendlyModalInited = false;
+
+  const setModalCalendlyFallback = (visible) => {
+    if (modalCalendlyFallback) modalCalendlyFallback.hidden = !visible;
+    if (modalCalendlyRoot) modalCalendlyRoot.style.display = visible ? 'none' : '';
+  };
 
   const tryInitModalCalendly = () => {
     if (calendlyModalInited || !modalCalendlyRoot || !window.Calendly) return false;
-    modalCalendlyRoot.innerHTML = '';
-    modalCalendlyRoot.style.height = '';
-    window.Calendly.initInlineWidget({
-      url: CALENDLY_INLINE_URL,
-      parentElement: modalCalendlyRoot,
-      resize: true,
-    });
-    calendlyModalInited = true;
-    window.setTimeout(() => window.dispatchEvent(new Event('resize')), 350);
-    return true;
+    try {
+      modalCalendlyRoot.innerHTML = '';
+      modalCalendlyRoot.style.height = '';
+      window.Calendly.initInlineWidget({
+        url: CALENDLY_INLINE_URL,
+        parentElement: modalCalendlyRoot,
+        resize: true,
+      });
+      calendlyModalInited = true;
+      setModalCalendlyFallback(false);
+      window.setTimeout(() => window.dispatchEvent(new Event('resize')), 350);
+      window.setTimeout(() => window.dispatchEvent(new Event('resize')), 900);
+      return true;
+    } catch (e) {
+      console.warn('Calendly initInlineWidget failed', e);
+      return false;
+    }
   };
 
   const openScheduleModal = () => {
     if (!scheduleModal) return;
+    setModalCalendlyFallback(false);
+    if (modalCalendlyRoot) modalCalendlyRoot.style.display = '';
     scheduleModal.hidden = false;
     scheduleModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    const kick = () => {
-      if (!tryInitModalCalendly()) {
-        let n = 0;
-        const t = window.setInterval(() => {
-          n += 1;
-          if (tryInitModalCalendly() || n > 80) window.clearInterval(t);
-        }, 100);
+    const kick = async () => {
+      try {
+        await ensureCalendlyScript();
+      } catch {
+        setModalCalendlyFallback(true);
+        return;
       }
+      if (tryInitModalCalendly()) return;
+      let n = 0;
+      const t = window.setInterval(() => {
+        n += 1;
+        if (tryInitModalCalendly() || n > 200) {
+          window.clearInterval(t);
+          if (!calendlyModalInited) setModalCalendlyFallback(true);
+        }
+      }, 100);
     };
-    requestAnimationFrame(() => requestAnimationFrame(kick));
+    requestAnimationFrame(() => requestAnimationFrame(() => void kick()));
   };
 
   const closeScheduleModal = () => {
@@ -136,6 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
     scheduleModal.hidden = true;
     scheduleModal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    setModalCalendlyFallback(false);
+    if (modalCalendlyRoot) modalCalendlyRoot.style.display = '';
   };
 
   document.getElementById('contact-open-scheduler')?.addEventListener('click', openScheduleModal);

@@ -6746,6 +6746,18 @@ a.homes-funnel-cta {
   min-height: 480px;
 }
 
+.site-modal__calendly-fallback {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+  margin: 0;
+  padding: 12px 0 8px;
+}
+.site-modal__calendly-fallback a {
+  color: var(--color-orange);
+  font-weight: 600;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .fl-badge-dot {
     animation: none;
