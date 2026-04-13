@@ -306,6 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!mobNav) return;
     mobNav.classList.remove('open');
     mobNav.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('mob-nav-open');
     document.body.style.overflow = '';
     hamburger?.setAttribute('aria-expanded', 'false');
   }
@@ -314,6 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!mobNav) return;
     mobNav.classList.add('open');
     mobNav.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('mob-nav-open');
     document.body.style.overflow = 'hidden';
     hamburger?.setAttribute('aria-expanded', 'true');
   }

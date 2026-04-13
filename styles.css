@@ -711,6 +711,14 @@ h1,h2,h3,h4 { font-family: var(--font-display); line-height: 1.14; }
   display: flex;
 }
 
+/* Fixed floating CTA uses its own stacking context; keep it off the menu entirely */
+body.mob-nav-open .floating-cta,
+body:has(.mob-nav-overlay.open) .floating-cta {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden;
+}
+
 .mob-nav-top {
   display: flex;
   align-items: center;
@@ -979,6 +987,27 @@ h1,h2,h3,h4 { font-family: var(--font-display); line-height: 1.14; }
   }
   .mob-nav-item-text {
     font-size: clamp(18px, 5.5vw, 22px);
+  }
+  .mob-nav-right-col {
+    padding-bottom: 8px;
+  }
+  /* Stack footer so the CTA isn’t pinned beside/over the social grid */
+  .mob-nav-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding-top: 16px;
+    padding-bottom: max(20px, env(safe-area-inset-bottom, 0px));
+  }
+  .mob-nav-footer-phone {
+    font-size: 15px;
+    text-align: center;
+  }
+  .mob-nav-cta {
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 18px;
   }
 }
 
