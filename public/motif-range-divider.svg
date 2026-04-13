@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Irregular high-frequency ridgeline (many short segments) — reads craggy / range, not a sine wave.
+  Still tiles at 480px: y=68 and y=78 at both edges.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 100" preserveAspectRatio="none">
+  <path fill="#24302A" d="M0 100 L0 78 L38 76 L72 62 L98 68 L128 54 L158 66 L188 58 L218 50 L248 60 L278 56 L308 64 L338 52 L368 70 L398 60 L428 68 L458 74 L480 78 L480 100 Z"/>
+  <path fill="#1C3028" d="M0 100 L0 68 L18 65 L34 54 L48 60 L58 44 L72 50 L84 32 L96 40 L108 22 L120 34 L132 46 L148 28 L164 42 L178 52 L192 36 L208 48 L222 58 L236 38 L252 30 L268 46 L282 56 L296 40 L312 24 L326 38 L340 50 L356 32 L372 44 L386 58 L402 42 L418 26 L434 40 L448 54 L464 62 L480 68 L480 100 Z"/>
+</svg>

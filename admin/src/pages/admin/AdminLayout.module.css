@@ -1,0 +1,95 @@
+.layout {
+  min-height: 100vh;
+  background: #f9fafb;
+  font-family: var(--font-sans);
+}
+
+.header {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.logoLink {
+  color: var(--text-tertiary);
+  text-decoration: none;
+  font-size: 0.8125rem;
+}
+
+.logoLink:hover {
+  color: var(--text-inverse);
+}
+
+.logoMuted {
+  color: var(--text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.logoSep {
+  color: var(--text-tertiary);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navLink {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  padding: 0.375rem 0.875rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.navLink:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.signOut {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0.3rem 0.875rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  transition: all var(--transition-fast);
+}
+
+.signOut:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}

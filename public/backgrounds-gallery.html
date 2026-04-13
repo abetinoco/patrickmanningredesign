@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>75 KY · TN pattern backgrounds</title>
+  <style>
+    :root {
+      --cream: #f7f4ed;
+      --forest: #1a2620;
+      --orange: #d4703a;
+      --ink: #1a1410;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #0d0f0e;
+      color: #e8e4dc;
+    }
+    .page-head {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 20px 16px;
+    }
+    .page-head h1 { font-size: 1.35rem; margin: 0 0 8px; }
+    .page-head p { margin: 0; font-size: 0.9rem; opacity: 0.88; max-width: 62ch; }
+    #grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+      display: grid;
+      gap: 28px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    .card {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #161918;
+    }
+    .card h2 {
+      margin: 0;
+      padding: 10px 14px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(0,0,0,0.45);
+    }
+    .preview {
+      min-height: 180px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 16px;
+      background-repeat: repeat;
+      background-position: 0 0;
+    }
+    .preview .label {
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    }
+    .preview .sub {
+      font-size: 0.72rem;
+      opacity: 0.85;
+      margin-top: 4px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    .preview.dark .label,
+    .preview.dark .sub { color: rgba(255,255,255,0.95); }
+    .preview.light .label { color: var(--ink); }
+    .preview.light .sub { color: rgba(26,20,16,0.65); }
+  </style>
+</head>
+<body>
+  <header class="page-head">
+    <h1>75 pattern backgrounds · Kentucky &amp; Tennessee</h1>
+    <p>
+      <strong>01–50</strong> geometric / regional motifs · <strong>51–75</strong> real-estate line art (houses, keys, roofs, fences).
+      Patterns are real <code>public/bg-patterns/*.svg</code> files (bold strokes, no clipped hairlines). Regenerate with
+      <code>node scripts/gen-bg-gallery.mjs</code>. Serve from site root so <code>bg-patterns/</code> resolves (e.g. Vite dev server).
+    </p>
+  </header>
+  <div id="grid"></div>
+  <script src="bg-gallery-manifest.js"></script>
+  <script>
+    (function () {
+      const grid = document.getElementById("grid");
+      const demos = window.BG_GALLERY;
+      if (!Array.isArray(demos) || demos.length === 0) {
+        grid.innerHTML = "<p>Missing manifest. Run <code>node scripts/gen-bg-gallery.mjs</code> from the project root.</p>";
+        return;
+      }
+      demos.forEach((d, i) => {
+        const n = i + 1;
+        const art = document.createElement("article");
+        art.className = "card";
+        const light = d.light !== false;
+        const style =
+          "background-color:" +
+          d.bg +
+          ";background-image:url('" +
+          d.src +
+          "');background-size:" +
+          d.size +
+          ";background-repeat:repeat;";
+        art.innerHTML =
+          "<h2>" +
+          String(n).padStart(2, "0") +
+          " — " +
+          d.t +
+          "</h2>" +
+          '<div class="preview ' +
+          (light ? "light" : "dark") +
+          '" style="' +
+          style +
+          '">' +
+          '<span class="label">Serving TN &amp; KY</span>' +
+          '<span class="sub">Background preview</span>' +
+          "</div>";
+        grid.appendChild(art);
+      });
+    })();
+  </script>
+</body>
+</html>

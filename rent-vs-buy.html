@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rent vs. buy calculator | Patrick Manning — Tennessee &amp; Kentucky Realtor®</title>
+  <meta name="description" content="Compare the long-term cost of buying vs. renting in TN &amp; KY — adjustable assumptions and year-by-year chart. For education only." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="tool-subpage">
+  <header class="tool-subpage__bar">
+    <a href="index.html#tools">← Back to mortgage payment estimator</a>
+    <span class="tool-subpage__title">Patrick Manning · Realtor®</span>
+    <a href="closing-cost-estimator.html">Closing cost estimator →</a>
+  </header>
+
+  <main class="tool-subpage__main">
+    <section class="rvb-section section--ridgeline-out" id="rent-vs-buy" aria-label="Rent versus buy calculator">
+      <div class="container">
+        <div class="rvb-header">
+          <span class="rvb-eyebrow">Tools</span>
+          <h2 class="rvb-title">Rent vs. buy calculator</h2>
+          <p class="rvb-sub">See exactly when buying beats renting in your situation — year by year.</p>
+        </div>
+        <div class="rvb-inner">
+          <div class="rvb-controls">
+            <div class="rvb-card">
+              <div class="rvb-section-label">Your situation</div>
+              <div class="rvb-slider-group">
+                <div class="rvb-slider-header"><span class="rvb-slider-label">Home price</span><span class="rvb-slider-val" id="rvb-price-val">$400,000</span></div>
+                <input type="range" id="rvb-price" min="100000" max="1500000" step="5000" value="400000" oninput="rvbUpdate()" />
+              </div>
+              <div class="rvb-slider-group">
+                <div class="rvb-slider-header"><span class="rvb-slider-label">Down payment</span><span class="rvb-slider-val orange" id="rvb-down-val">20% ($80,000)</span></div>
+                <input type="range" id="rvb-down" min="3" max="50" step="1" value="20" oninput="rvbUpdate()" />
+              </div>
+              <div class="rvb-slider-group">
+                <div class="rvb-slider-header"><span class="rvb-slider-label">Interest rate</span><span class="rvb-slider-val" id="rvb-rate-val">6.5%</span></div>
+                <input type="range" id="rvb-rate" min="2" max="12" step="0.1" value="6.5" oninput="rvbUpdate()" />
+              </div>
+              <div class="rvb-slider-group">
+                <div class="rvb-slider-header"><span class="rvb-slider-label">Current monthly rent</span><span class="rvb-slider-val" id="rvb-rent-val">$1,800/mo</span></div>
+                <input type="range" id="rvb-rent" min="500" max="5000" step="50" value="1800" oninput="rvbUpdate()" />
+              </div>
+              <div class="rvb-section-label" style="margin-top:20px;">Assumptions</div>
+              <div class="rvb-slider-group">
+                <div class="rvb-slider-header"><span class="rvb-slider-label">Home appreciation (TN avg ~4%)</span><span class="rvb-slider-val" id="rvb-appr-val">4.0%/yr</span></div>
+                <input type="range" id="rvb-appr" min="0" max="10" step="0.5" value="4" oninput="rvbUpdate()" />
+              </div>
+              <div class="rvb-slider-group">
+                <div class="rvb-slider-header"><span class="rvb-slider-label">Rent increase</span><span class="rvb-slider-val" id="rvb-rentinc-val">3.0%/yr</span></div>
+                <input type="range" id="rvb-rentinc" min="0" max="8" step="0.5" value="3" oninput="rvbUpdate()" />
+              </div>
+              <div class="rvb-slider-group">
+                <div class="rvb-slider-header"><span class="rvb-slider-label">Investment return on savings</span><span class="rvb-slider-val" id="rvb-invest-val">7.0%/yr</span></div>
+                <input type="range" id="rvb-invest" min="0" max="12" step="0.5" value="7" oninput="rvbUpdate()" />
+              </div>
+              <div class="rvb-slider-group">
+                <div class="rvb-slider-header"><span class="rvb-slider-label">How long you plan to stay</span><span class="rvb-slider-val" id="rvb-years-val">10 years</span></div>
+                <input type="range" id="rvb-years" min="1" max="30" step="1" value="10" oninput="rvbUpdate()" />
+              </div>
+            </div>
+          </div>
+
+          <div class="rvb-results">
+            <div class="rvb-verdict" id="rvb-verdict">
+              <div class="rvb-verdict-icon" id="rvb-verdict-icon">🏡</div>
+              <div class="rvb-verdict-text">
+                <div class="rvb-verdict-headline" id="rvb-verdict-headline">Buying wins after year 4</div>
+                <div class="rvb-verdict-sub" id="rvb-verdict-sub">Over 10 years, buying saves you $48,200</div>
+              </div>
+            </div>
+
+            <div class="rvb-summary-grid">
+              <div class="rvb-summary-card buy">
+                <div class="rvb-summary-label">Total cost of buying</div>
+                <div class="rvb-summary-num" id="rvb-buy-total">$0</div>
+                <div class="rvb-summary-sub" id="rvb-buy-equity">Net of equity &amp; appreciation</div>
+              </div>
+              <div class="rvb-summary-card rent">
+                <div class="rvb-summary-label">Total cost of renting</div>
+                <div class="rvb-summary-num" id="rvb-rent-total">$0</div>
+                <div class="rvb-summary-sub">Including investment gains on savings</div>
+              </div>
+            </div>
+
+            <div class="rvb-chart-wrap">
+              <div class="rvb-chart-label">Cumulative cost over time</div>
+              <canvas id="rvb-chart" height="200" aria-label="Rent versus buy cumulative cost chart"></canvas>
+              <div class="rvb-chart-legend">
+                <span class="rvb-legend-item"><span class="rvb-legend-dot" style="background:#c4723a;"></span>Buying</span>
+                <span class="rvb-legend-item"><span class="rvb-legend-dot" style="background:#1a2e28;"></span>Renting</span>
+              </div>
+            </div>
+
+            <div class="rvb-breakdown">
+              <div class="rvb-breakdown-title">Buying cost breakdown</div>
+              <div class="rvb-breakdown-grid" id="rvb-buy-breakdown"></div>
+            </div>
+
+            <p class="rvb-disclaimer">This model accounts for: mortgage P&amp;I, property tax (TN 0.46%), insurance (0.5%), maintenance (1%/yr), PMI if applicable, closing costs at purchase (3%) and sale (6%), opportunity cost of down payment at your specified investment return, home equity accumulation, and appreciation. For education only.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.PM_SITE_CONFIG = { ga4MeasurementId: '' };
+  </script>
+  <script src="/tracking.js" defer></script>
+  <script src="/main.js" defer></script>
+</body>
+</html>

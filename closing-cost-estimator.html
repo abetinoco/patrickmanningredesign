@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Closing cost estimator | Patrick Manning — Tennessee &amp; Kentucky Realtor®</title>
+  <meta name="description" content="Estimate buyer and seller closing costs for Tennessee and Kentucky — itemized fees and total cash to close. For education only." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="tool-subpage">
+  <header class="tool-subpage__bar">
+    <a href="index.html#tools">← Back to mortgage payment estimator</a>
+    <span class="tool-subpage__title">Patrick Manning · Realtor®</span>
+    <a href="rent-vs-buy.html">Rent vs. buy calculator →</a>
+  </header>
+
+  <main class="tool-subpage__main">
+    <section class="cc-section" id="closing-costs" aria-label="Closing cost estimator">
+      <div class="container">
+        <div class="cc-inner">
+          <div class="cc-left">
+            <span class="cc-eyebrow">Tools</span>
+            <h2 class="cc-title">Closing cost estimator</h2>
+            <p class="cc-body">Understand exactly how much cash you&apos;ll need at closing — itemized by fee. Based on real TN &amp; KY averages, updated for 2025–2026.</p>
+            <div class="cc-mode-toggle">
+              <button type="button" class="cc-mode-btn active" id="cc-btn-buyer" onclick="ccSetMode('buyer')">I&apos;m buying</button>
+              <button type="button" class="cc-mode-btn" id="cc-btn-seller" onclick="ccSetMode('seller')">I&apos;m selling</button>
+            </div>
+            <div class="cc-slider-group">
+              <div class="cc-slider-header">
+                <span class="cc-slider-label" id="cc-price-label">Purchase price</span>
+                <span class="cc-slider-val" id="cc-price-val">$400,000</span>
+              </div>
+              <input type="range" id="cc-price" min="100000" max="1500000" step="5000" value="400000" oninput="ccUpdate()" aria-valuetext="$400,000" />
+            </div>
+            <div id="cc-buyer-inputs">
+              <div class="cc-slider-group">
+                <div class="cc-slider-header">
+                  <span class="cc-slider-label">Down payment</span>
+                  <span class="cc-slider-val orange" id="cc-down-val">20%</span>
+                </div>
+                <input type="range" id="cc-down" min="3" max="50" step="1" value="20" oninput="ccUpdate()" />
+              </div>
+              <div class="cc-select-group" style="margin-bottom:20px;">
+                <span class="cc-select-label">Loan type</span>
+                <select class="cc-select" id="cc-loan-type" onchange="ccUpdate()" aria-label="Loan type">
+                  <option value="conventional">Conventional</option>
+                  <option value="fha">FHA</option>
+                  <option value="va">VA</option>
+                  <option value="cash">Cash purchase</option>
+                </select>
+              </div>
+            </div>
+            <div id="cc-seller-inputs" style="display:none">
+              <div class="cc-toggle-row" style="margin-bottom:16px;">
+                <span class="cc-toggle-label">Include buyer&apos;s agent commission</span>
+                <label class="cc-toggle-switch"><input type="checkbox" id="cc-commission-toggle" checked onchange="ccUpdate()" aria-label="Include buyer agent commission" /><span class="cc-toggle-slider"></span></label>
+              </div>
+              <div class="cc-slider-group">
+                <div class="cc-slider-header">
+                  <span class="cc-slider-label">Remaining mortgage balance</span>
+                  <span class="cc-slider-val" id="cc-balance-val">$0</span>
+                </div>
+                <input type="range" id="cc-balance" min="0" max="1000000" step="5000" value="0" oninput="ccUpdate()" />
+              </div>
+            </div>
+            <p class="cc-disclaimer">Estimates based on 2025–2026 TN/KY averages. Actual fees vary by county, lender, and title company. Always review your Loan Estimate and Closing Disclosure.</p>
+          </div>
+
+          <div class="cc-right">
+            <div class="cc-card">
+              <div class="cc-result-header">
+                <div>
+                  <div class="cc-result-label" id="cc-result-label">Estimated buyer closing costs</div>
+                  <div class="cc-result-num" id="cc-result-num">$12,400</div>
+                </div>
+                <div class="cc-result-range" id="cc-result-range">Typical range: $8,000 – $20,000</div>
+              </div>
+              <div class="cc-items" id="cc-items"></div>
+              <div class="cc-total-row">
+                <span class="cc-total-label">Total estimated</span>
+                <span class="cc-total-val" id="cc-total-val">$12,400</span>
+              </div>
+              <div id="cc-cash-needed" class="cc-cash-box">
+                <div class="cc-cash-label">Total cash needed at closing</div>
+                <div class="cc-cash-num" id="cc-cash-num">$92,400</div>
+                <div class="cc-cash-sub" id="cc-cash-sub">Down payment $80,000 + closing costs $12,400</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.PM_SITE_CONFIG = { ga4MeasurementId: '' };
+  </script>
+  <script src="/tracking.js" defer></script>
+  <script src="/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+.toolbar {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.count {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.state {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  background: #fff;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--border-light);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-primary);
+  vertical-align: top;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background: var(--bg-secondary);
+}
+
+.dateCell {
+  white-space: nowrap;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+}
+
+.nameCell {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pageCell {
+  color: var(--text-tertiary);
+  font-size: 0.8125rem;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notesCell {
+  max-width: 200px;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+}
+
+.link {
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+.pill_buying {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.pill_selling {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.pill_relocating {
+  background: #fef9c3;
+  color: #a16207;
+}
+
+.pill_investing {
+  background: #f3e8ff;
+  color: #7e22ce;
+}
