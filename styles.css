@@ -6566,8 +6566,11 @@ a.homes-funnel-cta {
 }
 
 .footer-madeby-heart {
-  color: #93c5fd;
-  font-weight: 600;
+  display: inline-block;
+  margin: 0 1px;
+  font-size: 1.05em;
+  line-height: 1;
+  vertical-align: -0.05em;
 }
 
 .footer-madeby-link {
