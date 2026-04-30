@@ -23,5 +23,5 @@
     "baseUrl": ".",
     "paths": {}
   },
-  "include": ["admin/src/**/*.ts", "admin/src/**/*.tsx"]
+  "include": ["admin/src/**/*.ts", "admin/src/**/*.tsx", "src/**/*.ts"]
 }
