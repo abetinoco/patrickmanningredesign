@@ -1029,6 +1029,49 @@
           <div class="embed-card">
             <div class="embed-header">
               <div class="embed-header-left">
+                <div class="platform-icon icon-ig">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="platform-name">Instagram</div>
+                  <div class="platform-handle">@pmanningtnrealtor</div>
+                </div>
+              </div>
+              <div class="live-dot" aria-hidden="true"></div>
+            </div>
+            <div class="embed-body">
+              <!-- Profile grids cannot be embedded via Instagram’s script (profile URLs fail). Real thumbnails: local brand images below. For a live auto-updating grid, set PM_SITE_CONFIG.instagramGridIframeSrc to your iframe URL from LightWidget.com or SnapWidget.com (free tier). -->
+              <div class="instagram-wrapper instagram-wrapper--static" id="instagram-card-shell">
+                <div id="instagram-card-inner" class="instagram-card-inner">
+                  <div class="ig-profile-preview">
+                    <img class="ig-profile-preview__avatar" src="patrick-manning.png" alt="" width="72" height="72" loading="lazy" />
+                    <div class="ig-profile-preview__text">
+                      <span class="ig-profile-preview__title">@pmanningtnrealtor</span>
+                      <span class="ig-profile-preview__sub">Tours, tips, and new listings on the feed.</span>
+                    </div>
+                    <div class="ig-profile-preview__mock">
+                      <a href="https://www.instagram.com/pmanningtnrealtor/" target="_blank" rel="noopener noreferrer" class="ig-mock-thumb ig-mock-thumb--pm-1"><img src="patrick-manning.png" alt="" loading="lazy" width="120" height="120" /></a>
+                      <a href="https://www.instagram.com/pmanningtnrealtor/" target="_blank" rel="noopener noreferrer" class="ig-mock-thumb ig-mock-thumb--hero-1"><img src="hero-bg.png" alt="" loading="lazy" width="120" height="120" /></a>
+                      <a href="https://www.instagram.com/pmanningtnrealtor/" target="_blank" rel="noopener noreferrer" class="ig-mock-thumb ig-mock-thumb--pm-2"><img src="patrick-manning.png" alt="" loading="lazy" width="120" height="120" /></a>
+                      <a href="https://www.instagram.com/pmanningtnrealtor/" target="_blank" rel="noopener noreferrer" class="ig-mock-thumb ig-mock-thumb--hero-2"><img src="hero-bg.png" alt="" loading="lazy" width="120" height="120" /></a>
+                      <a href="https://www.instagram.com/pmanningtnrealtor/" target="_blank" rel="noopener noreferrer" class="ig-mock-thumb ig-mock-thumb--pm-3"><img src="patrick-manning.png" alt="" loading="lazy" width="120" height="120" /></a>
+                      <a href="https://www.instagram.com/pmanningtnrealtor/" target="_blank" rel="noopener noreferrer" class="ig-mock-thumb ig-mock-thumb--hero-3"><img src="hero-bg.png" alt="" loading="lazy" width="120" height="120" /></a>
+                    </div>
+                    <a href="https://www.instagram.com/pmanningtnrealtor/" target="_blank" rel="noopener noreferrer" class="ig-profile-preview__btn">View on Instagram</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="https://www.instagram.com/pmanningtnrealtor/" target="_blank" rel="noopener noreferrer" class="embed-link">Follow on Instagram <span class="embed-link-arrow">→</span></a>
+          </div>
+
+          <div class="embed-card">
+            <div class="embed-header">
+              <div class="embed-header-left">
                 <div class="platform-icon icon-tt">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v8.1c0 2.27-.61 4.56-1.89 6.45-1.39 2.05-3.6 3.46-6.07 3.84-2.45.38-5.07-.15-7.15-1.54-2.07-1.38-3.47-3.64-3.8-6.1-.34-2.52.3-5.17 1.82-7.14 1.4-1.83 3.52-2.93 5.8-3.17.2-.02.39-.03.59-.03V12.5c-2.4.08-4.52 1.63-5.22 3.93-.41 1.34-.33 2.82.26 4.1.53 1.16 1.48 2.08 2.68 2.5 1.75.61 3.8.19 5.09-1.07 1.25-1.23 1.72-3.07 1.72-4.81V.02z"/></svg>
                 </div>
@@ -1573,7 +1616,7 @@
         </div>
         <div class="footer-bottom-right">
           <div class="footer-copy">© 2026 Patrick Manning. Real Broker, LLC.</div>
-          <div class="footer-madeby">Made with <span class="footer-madeby-heart">♥</span> by Halo</div>
+          <p class="footer-madeby">Made with <span class="footer-madeby-heart" aria-hidden="true">&lt;3</span><span class="visually-hidden">love</span> By <a href="https://haloweb.agency/" class="footer-madeby-link" target="_blank" rel="noopener">Halo</a></p>
         </div>
       </div>
     </div>
@@ -1594,8 +1637,32 @@
 
   <script>
     window.PM_SITE_CONFIG = {
-      ga4MeasurementId: ''
+      ga4MeasurementId: '',
+      /* Optional: paste iframe src from a free Instagram grid widget (LightWidget, SnapWidget) for @pmanningtnrealtor — replaces the preview grid below the fold in the Social section */
+      instagramGridIframeSrc: ''
     };
+  </script>
+  <script>
+    (function () {
+      function mountInstagramWidget() {
+        var src = window.PM_SITE_CONFIG && String(window.PM_SITE_CONFIG.instagramGridIframeSrc || '').trim();
+        var inner = document.getElementById('instagram-card-inner');
+        var shell = document.getElementById('instagram-card-shell');
+        if (!inner || !shell || !src) return;
+        shell.classList.remove('instagram-wrapper--static');
+        shell.classList.add('instagram-wrapper--iframe');
+        inner.replaceChildren();
+        var iframe = document.createElement('iframe');
+        iframe.className = 'ig-feed-iframe';
+        iframe.title = 'Instagram feed — @pmanningtnrealtor';
+        iframe.src = src;
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        inner.appendChild(iframe);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mountInstagramWidget);
+      else mountInstagramWidget();
+    })();
   </script>
   <!-- Optional: PostHog web snippet from https://posthog.com/docs (insert above tracking.js) -->
   <script async src="https://www.tiktok.com/embed.js"></script>

@@ -4567,7 +4567,7 @@ body:has(.mob-nav-overlay.open) .floating-cta {
 
 .embeds-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
   align-items: stretch;
 }
@@ -4623,6 +4623,9 @@ body:has(.mob-nav-overlay.open) .floating-cta {
 }
 .icon-yt { background: #FF0000; }
 .icon-fb { background: #1877F2; }
+.icon-ig {
+  background: linear-gradient(45deg, #f09433, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888);
+}
 .icon-tt { background: #010101; }
 
 .platform-name {
@@ -4694,6 +4697,150 @@ body:has(.mob-nav-overlay.open) .floating-cta {
   margin: 0 !important;
   width: 100% !important;
   max-width: 100% !important;
+}
+
+/* Instagram: no official profile grid embed; default uses real site images; optional iframe via PM_SITE_CONFIG.instagramGridIframeSrc */
+.instagram-wrapper--static {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #fafafa 0%, #efefef 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.instagram-wrapper--iframe {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+.instagram-card-inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.instagram-wrapper--iframe .instagram-card-inner {
+  height: 100%;
+}
+
+.ig-feed-iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.ig-profile-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 18px 14px 14px;
+  color: #262626;
+  box-sizing: border-box;
+  flex: 1;
+  min-height: 0;
+}
+
+.ig-profile-preview__avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.14);
+  flex-shrink: 0;
+}
+
+.ig-profile-preview__text {
+  margin-top: 12px;
+}
+
+.ig-profile-preview__title {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.ig-profile-preview__sub {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #737373;
+  max-width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ig-profile-preview__mock {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  width: 100%;
+  max-width: 232px;
+  margin: 14px auto 0;
+  flex: 1;
+  min-height: 0;
+  align-content: start;
+}
+
+.ig-mock-thumb {
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  overflow: hidden;
+  line-height: 0;
+  outline: none;
+}
+.ig-mock-thumb:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
+}
+.ig-mock-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.22s ease;
+}
+.ig-mock-thumb:hover img {
+  transform: scale(1.06);
+}
+
+.ig-mock-thumb--pm-1 img { object-position: 22% 12%; }
+.ig-mock-thumb--pm-2 img { object-position: 48% 28%; }
+.ig-mock-thumb--pm-3 img { object-position: 32% 8%; }
+.ig-mock-thumb--hero-1 img { object-position: 38% 42%; }
+.ig-mock-thumb--hero-2 img { object-position: 62% 38%; }
+.ig-mock-thumb--hero-3 img { object-position: 52% 68%; }
+
+.ig-profile-preview__btn {
+  margin-top: auto;
+  padding: 9px 18px;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(220, 39, 67, 0.22);
+  flex-shrink: 0;
+  align-self: center;
+  text-decoration: none;
+}
+.ig-profile-preview__btn:hover {
+  filter: brightness(1.06);
+  color: #fff;
 }
 
 .embed-link {
@@ -6414,10 +6561,24 @@ a.homes-funnel-cta {
   display: flex;
   align-items: center;
   gap: 4px;
+  flex-wrap: wrap;
+  margin: 0;
 }
 
 .footer-madeby-heart {
-  color: var(--color-orange, #c4723a);
+  color: #93c5fd;
+  font-weight: 600;
+}
+
+.footer-madeby-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(245, 240, 232, 0.28);
+  text-underline-offset: 2px;
+}
+.footer-madeby-link:hover {
+  color: rgba(245, 240, 232, 0.42);
+  text-decoration-color: rgba(147, 197, 253, 0.55);
 }
 
 @media (max-width: 900px) {
